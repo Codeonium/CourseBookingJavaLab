@@ -27,4 +27,22 @@ public class BookingController {
         bookingRepository.save(booking);
         return new ResponseEntity<>(booking, HttpStatus.CREATED);
     }
+
+    @GetMapping(value = "/distilleries")
+    public ResponseEntity getAllDistilleriesAndFilters(
+            @RequestParam(required = false, name = "region") String region,
+            @RequestParam(required = false, name = "whiskyAge") Integer whiskyAge
+
+    ){
+        // GET  /distilleries?region=Speyside
+        if (region != null){
+            return new ResponseEntity(distillaryRepository.findDistillerysByRegion(region), HttpStatus.OK);
+        }
+        // GET /distilleries?whiskyAge=12
+        if (whiskyAge != null){
+            return new ResponseEntity(distillaryRepository.findDistilleriesByWhiskiesAgeGreaterThan(whiskyAge), HttpStatus.OK);
+        }
+        // GET /distilleries
+        return new ResponseEntity(distillaryRepository.findAll(), HttpStatus.OK);
+    }
 }
