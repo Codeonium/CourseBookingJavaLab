@@ -1,7 +1,7 @@
 package com.codeclan.example.CourseBooking.controllers;
 
 import com.codeclan.example.CourseBooking.models.Booking;
-import com.codeclan.example.CourseBooking.repositories.BookingRespository;
+import com.codeclan.example.CourseBooking.repositories.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import java.util.List;
 public class BookingController {
 
     @Autowired
-    BookingRespository bookingRepository;
+    BookingRepository bookingRepository;
 
     @GetMapping(value = "/bookings")
     public ResponseEntity<List<Booking>> getAllBookings(){
